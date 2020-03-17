@@ -1,0 +1,32 @@
+.left {
+  &.container {
+    background-color: gainsboro;
+    height: 100vh;
+  }
+
+  &-card {
+    display: flex;
+
+    button {
+      cursor: pointer;
+      background-color: transparent;
+      border: medium solid $mainColor;
+      border-radius: 5px;
+    }
+  }
+}
+.right {
+  &.container {
+    background-color: $mainColor;
+    color: white;
+    height: 100vh;
+  }
+  .sub-left {
+    float: left;
+    width: 150px;
+  }
+
+  p {
+    margin: 0;
+  }
+}

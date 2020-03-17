@@ -1,2 +1,24 @@
-@import "./pages/main.scss";
-@import "./pages/StudentList/StudentList.style.scss";
+//global level
+$mainColor: darkslategray;
+
+body {
+  margin: 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.body-container {
+  display: flex;
+  div {
+    flex: 1;
+    padding: 10px;
+  }
+}
+
+.right-container {
+  background-color: $mainColor;
+  color: white;
+  height: 100vh;
+}
+
+// page level
+@import "./pages/Student/Student.style.scss";
