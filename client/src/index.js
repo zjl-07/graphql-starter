@@ -8,6 +8,7 @@ import { HttpLink } from "apollo-link-http";
 import { ApolloProvider } from "@apollo/react-hooks";
 
 import StudentList from "./pages/Student/StudentList";
+import CourseList from "./pages/Course/CourseList";
 
 import "./index.scss";
 
@@ -28,7 +29,8 @@ class App extends Component {
         <ApolloProvider client={client}>
           <div className="body-container">
             <Switch>
-              <Route path="/" component={StudentList} />
+              <Route exact path="/" component={StudentList} />
+              <Route exact path="/courses" component={CourseList} />
             </Switch>
           </div>
         </ApolloProvider>
