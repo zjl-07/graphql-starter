@@ -9,8 +9,9 @@ import { ApolloProvider } from "@apollo/react-hooks";
 
 import StudentList from "./pages/Student/StudentList";
 import CourseList from "./pages/Course/CourseList";
+import addStudent from "./pages/Student/addStudent";
 
-import "./index.scss";
+import "./styles/index.scss";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
@@ -31,6 +32,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={StudentList} />
               <Route exact path="/courses" component={CourseList} />
+              <Route exact path="/addStudent" component={addStudent} />
             </Switch>
           </div>
         </ApolloProvider>

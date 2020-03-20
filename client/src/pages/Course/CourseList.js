@@ -1,33 +1,51 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import { graphql } from "@apollo/react-hoc";
+import { withRouter } from "react-router-dom";
 import { GET_COURSES } from "./Course.query";
 import CourseDetails from "./CourseDetails";
+import Navbar from "../Navbar";
 
-const CourseList = ({ data }) => {
-  const { loading, error, courses } = data;
-  const [selected, setSelected] = useState(null);
+@Navbar
+@withRouter
+@graphql(GET_COURSES)
+export default class CourseList extends Component {
+  state = {
+    selected: null
+  };
 
-  if (loading) return <div>loading...</div>;
-  if (error) return <div>ERROR</div>;
-  if (!courses) return <div>Not Found!</div>;
+  handleSelectedClick = (id) => {
+    this.setState({ selected: id });
+  };
 
-  return (
-    <>
-      <div className="left container">
-        {courses.map((course) => (
-          <div className="left-card" key={course.id}>
-            <div>
-              <span>{course.courseName}</span>
+  render() {
+    const { loading, courses, error } = this.props.data;
+    const { history } = this.props;
+
+    if (loading) return <div>Loading..</div>;
+    if (error) return <div>ERROR</div>;
+    if (!courses) return <div>Not found! </div>;
+
+    return (
+      <>
+        <div className="left container">
+          <button onClick={() => history.push("/addcourses")}>
+            Add New Courses
+          </button>
+          {courses.map((course) => (
+            <div key={course.id} className="left-card">
+              <div>
+                <span>{course.courseName}</span>
+              </div>
+              <button onClick={() => this.handleSelectedClick(student.id)}>
+                view details
+              </button>
             </div>
-            <button onClick={() => setSelected(course.id)}>view details</button>
-          </div>
-        ))}
-      </div>
-      <div className="right-container">
-        <CourseDetails id={selected} />
-      </div>
-    </>
-  );
-};
-
-export default graphql(GET_COURSES)(CourseList);
+          ))}
+        </div>
+        <div className="right container">
+          <CourseDetails id={this.state.selected} />
+        </div>
+      </>
+    );
+  }
+}

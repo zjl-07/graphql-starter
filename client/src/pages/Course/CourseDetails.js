@@ -5,33 +5,33 @@ import { GET_COURSE_BY_ID } from "./Course.query.js";
 const CourseDetails = ({ id, data }) => {
   const { loading, error, course } = data;
 
-  if (!id)
-    return (
-      <div className="right-container">
-        Click one of the name provided to see the details
-      </div>
-    );
+  if (!id) return <>Click one of the course name provided to see the details</>;
 
   if (loading) return <div>Loading..</div>;
   if (error) return <div>ERROR</div>;
-  if (!student) return <div>Not found! </div>;
+  if (!course) return <div>Not found! </div>;
 
   return (
-    <div className="right container">
-      <div>
+    <>
+      <div className="flex-container">
         <p className="sub-left">Name</p>
         <p>{course.courseName}</p>
       </div>
-      <div>
+      <div className="flex-container">
         <p className="sub-left">Teacher</p>
         <p>{course.teacher}</p>
       </div>
-      <div>
+      <div className="flex-container">
         <p className="sub-left">Students:</p>
-        {/* <p>{course.course.courseName}</p> */}
-        {console.log(course.students)}
+        <p>
+          {course.students.map((student) => (
+            <li key={student.id}>
+              {student.name}_{student.gender}
+            </li>
+          ))}
+        </p>
       </div>
-    </div>
+    </>
   );
 };
 

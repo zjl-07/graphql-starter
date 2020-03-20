@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export const GET_STUDENTS = gql`
+const GET_STUDENTS = gql`
   {
     students {
       id
@@ -10,7 +10,7 @@ export const GET_STUDENTS = gql`
   }
 `;
 
-export const GET_STUDENT_BY_ID = gql`
+const GET_STUDENT_BY_ID = gql`
   query Student($id: ID!) {
     student(id: $id) {
       id
@@ -24,3 +24,14 @@ export const GET_STUDENT_BY_ID = gql`
     }
   }
 `;
+
+const ADD_STUDENT_MUTATION = gql`
+  mutation AddStudent($name: String!, $gender: String!, $courseId: ID!) {
+    addStudent(name: $name, gender: $gender, courseId: $courseId) {
+      name
+      gender
+    }
+  }
+`;
+
+export { GET_STUDENTS, GET_STUDENT_BY_ID, ADD_STUDENT_MUTATION };

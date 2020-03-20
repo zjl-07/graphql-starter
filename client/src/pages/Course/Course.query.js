@@ -9,7 +9,7 @@ export const GET_COURSES = gql`
   }
 `;
 export const GET_COURSE_BY_ID = gql`
-  query Couse($id: ID!) {
+  query Course($id: ID!) {
     course(id: $id) {
       id
       courseName
