@@ -11,6 +11,43 @@ const addStudent = () => {
     courseId: ""
   });
 
+  const { loading, error, data } = useQuery(GET_COURSES);
+  const [addStudent] = useMutation(ADD_STUDENT_MUTATION);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addStudent({
+      variables: {
+        name: student.name,
+        gender: student.gender,
+        courseId: student.courseId
+      },
+      refetchQueries: [{ query: GET_STUDENTS }]
+    });
+  };
+
+  const handleChange = (e) => {
+    let key = e.target.name;
+    let val = e.target.value;
+    setStudentData({ ...student, [key]: val });
+  };
+
+  const renderOptionList = () => {
+    if (loading) return <option value={null}>Loading</option>;
+    if (error) return <option value={null}>Error found!</option>;
+    if (!data.courses) return <option value={null}>No data found</option>;
+
+    return (
+      <>
+        {data.courses.map((course) => (
+          <option key={course.id} value={course.id}>
+            {course.courseName}
+          </option>
+        ))}
+      </>
+    );
+  };
+
   const FIELD_PROPERTY = [
     {
       type: "text",
@@ -51,61 +88,26 @@ const addStudent = () => {
     }
   ];
 
-  const { loading, error, data } = useQuery(GET_COURSES);
-  const [addTodo] = useMutation(ADD_STUDENT_MUTATION);
-
-  const handleChange = (e) => {
-    let key = e.target.name;
-    let val = e.target.value;
-    setStudentData({ ...student, [key]: val });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addTodo({
-      variables: {
-        name: student.name,
-        gender: student.gender,
-        courseId: student.courseId
-      },
-      refetchQueries: [{ query: GET_STUDENTS }]
-    });
-  };
-
-  const renderOptionList = () => {
-    if (loading) return <option value={null}>Loading</option>;
-    if (error) return <option value={null}>Error found!</option>;
-    if (!data.courses) return <option value={null}>No data found</option>;
-
-    return (
-      <>
-        {data.courses.map((course) => (
-          <option key={course.id} value={course.id}>
-            {course.courseName}
-          </option>
-        ))}
-      </>
-    );
-  };
-
   const renderFields = () =>
     FIELD_PROPERTY.map(({ type, ...rest }) => (
       <div key={rest.name}>
-        <label>{rest.name}</label>
-        {type === "text" && <input type={type} {...rest} />}
-        {type === "radio" &&
-          rest.items.map(({ value, ...rest }) => (
-            <label key={value}>
-              <input value={value} {...rest} />
-              {value}
-            </label>
-          ))}
-        {type === "select" && <select {...rest} />}
+        <div className="label">{rest.label}</div>
+        <div className="content">
+          {type === "text" && <input type={type} {...rest} />}
+          {type === "radio" &&
+            rest.items.map(({ value, ...rest }) => (
+              <label key={value}>
+                <input value={value} {...rest} />
+                {value}
+              </label>
+            ))}
+          {type === "select" && <select {...rest} />}
+        </div>
       </div>
     ));
 
   return (
-    <div className="add-student">
+    <div className="form">
       <h3>Add New Student</h3>
       <form onSubmit={handleSubmit}>
         {renderFields()}

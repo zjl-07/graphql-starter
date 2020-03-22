@@ -28,7 +28,7 @@ export default class CourseList extends Component {
     return (
       <>
         <div className="left container">
-          <button onClick={() => history.push("/addcourses")}>
+          <button onClick={() => history.push("/addCourse")}>
             Add New Courses
           </button>
           {courses.map((course) => (
@@ -36,7 +36,7 @@ export default class CourseList extends Component {
               <div>
                 <span>{course.courseName}</span>
               </div>
-              <button onClick={() => this.handleSelectedClick(student.id)}>
+              <button onClick={() => this.handleSelectedClick(course.id)}>
                 view details
               </button>
             </div>
