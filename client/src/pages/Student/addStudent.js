@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import Navbar from "../Navbar";
-import { ADD_STUDENT_MUTATION, GET_STUDENTS } from "./Student.query";
-import { GET_COURSES } from "../Course/Course.query";
+import Navbar from "@page-component/Navbar";
+import { ADD_STUDENT_MUTATION, GET_STUDENTS } from "@student/Student.query";
+import { GET_COURSES } from "@course/Course.query";
 
 const addStudent = () => {
   const [student, setStudentData] = useState({

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { graphql } from "@apollo/react-hoc";
 import { withRouter } from "react-router-dom";
-import { GET_COURSES } from "./Course.query";
-import CourseDetails from "./CourseDetails";
-import Navbar from "../Navbar";
+import { GET_COURSES } from "@course/Course.query";
+import CourseDetails from "@course/CourseDetails";
+import Navbar from "@page-component/Navbar";
 
 @Navbar
 @withRouter

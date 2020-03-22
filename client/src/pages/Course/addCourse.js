@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import Navbar from "../Navbar";
-import { ADD_COURSE_MUTATION, GET_COURSES } from "./Course.query";
+import Navbar from "@page-component/Navbar";
+import { ADD_COURSE_MUTATION, GET_COURSES } from "@course/Course.query";
 
 const addCourse = () => {
   const [course, setCourseData] = useState({

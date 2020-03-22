@@ -7,12 +7,12 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
 import { ApolloProvider } from "@apollo/react-hooks";
 
-import StudentList from "./pages/Student/StudentList";
-import addStudent from "./pages/Student/addStudent";
-import CourseList from "./pages/Course/CourseList";
-import addCourse from "./pages/Course/addCourse";
+import StudentList from "@student/StudentList";
+import addStudent from "@student/addStudent";
+import CourseList from "@course/CourseList";
+import addCourse from "@course/addCourse";
 
-import "./styles/index.scss";
+import "@styles/index.scss";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({

@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { GET_STUDENT_BY_ID } from "./Student.query.js";
+import { GET_STUDENT_BY_ID } from "@student/Student.query.js";
 
 function StudentDetails({ id }) {
   const { loading, error, data } = useQuery(GET_STUDENT_BY_ID, {

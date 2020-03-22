@@ -1,6 +1,6 @@
-var path = require("path");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
-var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const alias = require(path.resolve(__dirname, "alias"));
 
 module.exports = {
   entry: "./src/index.js",
@@ -22,6 +22,9 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias
+  },
 
   mode: "development",
   devServer: {
@@ -29,7 +32,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: "src/index.html"
     })
   ]
 };
